@@ -1,0 +1,48 @@
+<UserSettings>
+	<ApplicationIdentity version="11.0"/>
+	<ToolsOptions>
+		<ToolsOptionsCategory name="Environment" RegisteredName="Environment"/>
+	</ToolsOptions>
+	<Category name="Environment_Group" RegisteredName="Environment_Group">
+		<Category name="Environment_KeyBindings" Category="{F09035F1-80D2-4312-8EC4-4D354A4BCB4C}" Package="{DA9FB551-C724-11d0-AE1F-00A0C90FFFC3}" RegisteredName="Environment_KeyBindings" PackageName="Visual Studio Environment Package">
+			<Version>11.0.0.0</Version>
+			<KeyboardShortcuts>
+				<DefaultShortcuts/>
+				<ShortcutsScheme/>
+				<UserShortcuts>
+					<RemoveShortcut Command="View.ClassView" Scope="Global">Ctrl+Shift+C</RemoveShortcut>
+					<Shortcut Command="Build.CleanSolution" Scope="Global">Ctrl+Shift+C</Shortcut>
+					<Shortcut Command="Tools.ExternalCommand2" Scope="Global">Ctrl+K, Ctrl+Shift+K</Shortcut>
+				</UserShortcuts>
+			</KeyboardShortcuts>
+		</Category>
+		<Category name="Environment_ExternalTools" Category="{E8FAE9E8-FBA2-4474-B134-AB0FFCFB291D}" Package="{DA9FB551-C724-11d0-AE1F-00A0C90FFFC3}" RegisteredName="Environment_ExternalTools" PackageName="Visual Studio Environment Package">
+			<ExternalTools>
+				<ModifyRegisteredTool SourceKeyName="Spy++ (x64)">
+					<Index>0</Index>
+				</ModifyRegisteredTool>
+				<UserCreatedTool>
+					<Arguments>-ExecutionPolicy Unrestricted -File "c:\projects\Chocolatey\KillCassini\KillCassini.ps1"</Arguments>
+					<CloseOnExit>true</CloseOnExit>
+					<Command>C:\windows\system32\windowspowershell\v1.0\powershell.exe</Command>
+					<Index>1</Index>
+					<InitialDirectory>
+					</InitialDirectory>
+					<IsGUIapp>false</IsGUIapp>
+					<NameID>0</NameID>
+					<Package>{00000000-0000-0000-0000-000000000000}</Package>
+					<PromptForArguments>false</PromptForArguments>
+					<SaveAllDocs>true</SaveAllDocs>
+					<Title>KillCassini</Title>
+					<Unicode>false</Unicode>
+					<UseOutputWindow>true</UseOutputWindow>
+					<UseTaskList>false</UseTaskList>
+				</UserCreatedTool>
+				<ExcludeRegisteredTool SourceKeyName="MFC/ATL &amp;Trace Tool"/>
+				<ExcludeRegisteredTool SourceKeyName="Error Loo&amp;kup"/>
+				<ExcludeRegisteredTool SourceKeyName="Sp&amp;y++"/>
+				<ExcludeRegisteredTool SourceKeyName="Create GUID"/>
+			</ExternalTools>
+		</Category>
+	</Category>
+</UserSettings>

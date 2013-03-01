@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>gbMongoDB</id>
+    <title>gbMongoDB</title>
+    <version>2.2.3</version>
+    <authors>10gen</authors>
+    <owners>gbiamby</owners>
+    <summary>gb.MongoDB (based on H. Alan Stevens' MongoDB 2.2.0.1 package)</summary>
+    <description>gb.MongoDB (based on H. Alan Stevens' MongoDB 2.2.0.1 package). This package installs MongoDB for Windows. It detects the current machine bitness (32 or 64bit), and also installs the special MongoDB version for Win Server 2008R2/Win7 or greater, if running under one of those OSes.</description>
+    <projectUrl>http://www.mongodb.org/</projectUrl>
+    <iconUrl>http://fc01.deviantart.net/fs70/f/2010/168/e/1/Icon_MongoDB_by_xkneo.png</iconUrl>
+    <tags>mongo db document database nosql</tags>
+    <licenseUrl>http://www.mongodb.org/display/DOCS/Licensing</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <!--<dependencies>
+      <dependency id="" version="" />
+    </dependencies>-->
+    <releaseNotes></releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+    <!--<file src="content\**" target="content" />-->
+  </files>
+</package>

@@ -1,6 +1,6 @@
 ﻿#NOTE: Please remove any commented lines to tidy up prior to releasing the package, including this one
 
-$packageName = 'gbMongoDB' # arbitrary name for the package, used in messages
+$packageName = 'gb.MongoDB' # arbitrary name for the package, used in messages
 $mongoVersion = '2.2.3'
 
 $isWin7_2008R2_OrGreater = [Environment]::OSVersion.Version -ge (new-object 'Version' 6,1)
@@ -10,17 +10,15 @@ $is64bit = $processor.AddressWidth -eq 64
 $fileName = "mongodb-win32-i386-2.2.3.zip"
 if ($is64bit) {
     if ($isWin7_2008R2_OrGreater) {
-        $fileName = "mongodb-win32-x86`_64-$mongoVersion.zip"
-    } else {
         $fileName = "mongodb-win32-x86`_64-2008plus-$mongoVersion.zip"
+    } else {
+        $fileName = "mongodb-win32-x86`_64-$mongoVersion.zip"
     }
 }
 
-$url = "http://downloads.mongodb.org/win32/$fileName"
+#$url = "http://downloads.mongodb.org/win32/$fileName"
+$url = "C:\Users\Giscard\Downloads\$fileName"
 
-if ($isWin7_2008R2_OrGreater) {
-	$url64 = "http://downloads.mongodb.org/win32/mongodb-win32-x86`_64-2008plus-$mongoVersion.zip"
-} 
 
 $binRoot = "$env:systemdrive\"
 ### Using an environment variable to to define the bin root until we implement YAML configuration ###
@@ -33,9 +31,21 @@ if($env:chocolatey_bin_root -ne $null) {
 write-host "url: '$url'"
 write-host "url64: '$url64'"
 
+
+$mongoDir = $(join-path $binRoot $packageName)
+$mongod = join-path $mongoDir 'bin\mongod.exe'
+
+if(test-path $mongod){
+    write-host "Removing dir '$mongoDir'"
+    Start-ChocolateyProcessAsAdmin "& $mongod --remove"
+    remove-item $mongoDir -recurse -force
+} else {
+    Write-Host "NOt removing dir '$mongoDir'"
+}
+
 # main helpers - these have error handling tucked into them already
 # download and unpack a zip file
-Install-ChocolateyZipPackage "$packageName" "$url" "$(Split-Path -parent $MyInvocation.MyCommand.Definition)" 
+Install-ChocolateyZipPackage "$packageName" "$url" $binRoot
 
 try { #error handling is only necessary if you need to do anything in addition to/instead of the main helpers
   # other helpers - using any of these means you want to uncomment the error handling up top and at bottom.
@@ -59,10 +69,9 @@ try { #error handling is only necessary if you need to do anything in addition t
     $zipFileName = [io.path]::GetFileNameWithoutExtension($fileName)
     $scriptPath = $(Join-Path (Split-Path -parent $MyInvocation.MyCommand.Definition) "$zipFileName")
     Write-Host "Script Path: $scriptPath" 
-
+    Write-Host "Renaming from: '$(join-path $binRoot $zipFileName)'"
     
-    $mongoDir = $scriptPath
-    $mongod = join-path $mongoDir 'bin\mongod.exe'
+    Rename-Item $(join-path $binRoot $zipFileName) $mongoDir -Force
 
     $dataDir = $(join-path $mongoDir 'data')
     if(!$(test-path $dataDir)){mkdir $dataDir}
@@ -74,6 +83,14 @@ try { #error handling is only necessary if you need to do anything in addition t
     if(!$(test-path $logsDir)){mkdir $logsDir}
 
     $binDir = join-path $env:chocolateyinstall 'bin'
+
+    $mongoBats = Get-ChildItem -Path $binDir -Filter mongo*.bat
+
+    $batchFileName = Join-Path $binDir 'mongo.bat'
+    $executable = join-path $mongoDir 'bin\mongo.exe'
+    "@echo off
+    $executable %*" | Out-File $batchFileName -encoding ASCII
+
     $batchFileName = Join-Path $binDir 'MongoRotateLogs.bat'
     "@echo off
     $executable --eval `'db.runCommand(`"logRotate`")`' mongohost:27017/admin" | Out-File $batchFileName -encoding ASCII

@@ -1,0 +1,1 @@
+﻿Install-ChocolateyPackage 'tortoisehg' 'msi' '/quiet /norestart' 'http://bitbucket.org/tortoisehg/files/downloads/tortoisehg-2.7.0-hg-2.4.2+-x86.msi' 'http://bitbucket.org/tortoisehg/files/downloads/tortoisehg-2.7.0-hg-2.4.2+-x64.msi'

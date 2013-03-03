@@ -16,8 +16,8 @@ if ($is64bit) {
     }
 }
 
-#$url = "http://downloads.mongodb.org/win32/$fileName"
-$url = "C:\Users\Giscard\Downloads\$fileName"
+$url = "http://downloads.mongodb.org/win32/$fileName"
+#$url = "C:\Users\Giscard\Downloads\$fileName"
 
 
 $binRoot = "$env:systemdrive\"

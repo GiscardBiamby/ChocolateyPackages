@@ -1,13 +1,13 @@
 ﻿#NOTE: Please remove any commented lines to tidy up prior to releasing the package, including this one
 
 $packageName = 'gb.MongoDB' # arbitrary name for the package, used in messages
-$mongoVersion = '2.2.3'
+$mongoVersion = '2.4.5'
 
 $isWin7_2008R2_OrGreater = [Environment]::OSVersion.Version -ge (new-object 'Version' 6,1)
 $processor = Get-WmiObject Win32_Processor
 $is64bit = $processor.AddressWidth -eq 64
 
-$fileName = "mongodb-win32-i386-2.2.3.zip"
+$fileName = "mongodb-win32-i386-$mongoVersion.zip"
 if ($is64bit) {
     if ($isWin7_2008R2_OrGreater) {
         $fileName = "mongodb-win32-x86`_64-2008plus-$mongoVersion.zip"
@@ -18,19 +18,15 @@ if ($is64bit) {
 
 $url = "http://downloads.mongodb.org/win32/$fileName"
 #$url = "C:\Users\Giscard\Downloads\$fileName"
-
-
-$binRoot = "$env:systemdrive\"
-### Using an environment variable to to define the bin root until we implement YAML configuration ###
-if($env:chocolatey_bin_root -ne $null) {
-	$binRoot = join-path $env:systemdrive $env:chocolatey_bin_root
-}
-
-
-
 write-host "url: '$url'"
 write-host "url64: '$url64'"
 
+
+## Where we will install mongodb to: 
+$binRoot = "$env:systemdrive"
+if($env:chocolatey_bin_root -ne $null) {
+	$binRoot = $env:chocolatey_bin_root
+}
 
 $mongoDir = $(join-path $binRoot $packageName)
 $mongod = join-path $mongoDir 'bin\mongod.exe'
@@ -40,7 +36,7 @@ if(test-path $mongod){
     Start-ChocolateyProcessAsAdmin "& $mongod --remove"
     remove-item $mongoDir -recurse -force
 } else {
-    Write-Host "NOt removing dir '$mongoDir'"
+    Write-Host "Not removing dir '$mongoDir'"
 }
 
 # main helpers - these have error handling tucked into them already

@@ -3,11 +3,11 @@
   <metadata>
     <id>gb.MongoDB</id>
     <title>gb.MongoDB</title>
-    <version>2.2.3.1</version>
+    <version>2.4.5</version>
     <authors>10gen</authors>
     <owners>gbiamby</owners>
-    <summary>gb.MongoDB (based on H. Alan Stevens' MongoDB 2.2.0.1 package)</summary>
-    <description>gb.MongoDB (based on H. Alan Stevens' MongoDB 2.2.0.1 package). This package installs MongoDB for Windows. It detects the current machine bitness (32 or 64bit), and also installs the special MongoDB version for Win Server 2008R2/Win7 or greater, if running under one of those OSes.</description>
+    <summary>gb.MongoDB (based on H. Alan Stevens' MongoDB 2.4.5 package)</summary>
+    <description>gb.MongoDB (based on H. Alan Stevens' MongoDB package). This package installs MongoDB for Windows. It detects the current machine bitness (32 or 64bit), and also installs the special MongoDB version for Win Server 2008R2/Win7 or greater, if running under one of those OSes.</description>
     <projectUrl>http://www.mongodb.org/</projectUrl>
     <iconUrl>http://fc01.deviantart.net/fs70/f/2010/168/e/1/Icon_MongoDB_by_xkneo.png</iconUrl>
     <tags>mongo db document database nosql</tags>

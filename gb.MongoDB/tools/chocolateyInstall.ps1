@@ -1,7 +1,7 @@
 ﻿#NOTE: Please remove any commented lines to tidy up prior to releasing the package, including this one
 
 $packageName = 'gb.MongoDB' # arbitrary name for the package, used in messages
-$mongoVersion = '2.4.5'
+$mongoVersion = '2.4.6'
 
 $isWin7_2008R2_OrGreater = [Environment]::OSVersion.Version -ge (new-object 'Version' 6,1)
 $processor = Get-WmiObject Win32_Processor
@@ -92,7 +92,8 @@ try { #error handling is only necessary if you need to do anything in addition t
     $executable --eval `'db.runCommand(`"logRotate`")`' mongohost:27017/admin" | Out-File $batchFileName -encoding ASCII
 
     # Install and start mongodb as a Windows service
-    Start-ChocolateyProcessAsAdmin "& $mongod --quiet --bind_ip 127.0.0.1 --logpath $(join-path $logsDir 'MongoDB.log') --logappend --dbpath $dataDir --directoryperdb --reinstall; net start `"MongoDB`""
+    Start-ChocolateyProcessAsAdmin "& $mongod --quiet --bind_ip 127.0.0.1 --logpath $(join-path $logsDir 'MongoDB.log') --logappend --dbpath $dataDir --directoryperdb --remove;"
+    Start-ChocolateyProcessAsAdmin "& $mongod --quiet --bind_ip 127.0.0.1 --logpath $(join-path $logsDir 'MongoDB.log') --logappend --dbpath $dataDir --directoryperdb --install; net start `"MongoDB`""
 
 
   #$processor = Get-WmiObject Win32_Processor

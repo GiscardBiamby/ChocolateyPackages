@@ -1,7 +1,7 @@
 ﻿#NOTE: Please remove any commented lines to tidy up prior to releasing the package, including this one
 
 $packageName = 'gb.MongoDB' # arbitrary name for the package, used in messages
-$mongoVersion = '2.4.6'
+$mongoVersion = '2.4.7'
 
 $isWin7_2008R2_OrGreater = [Environment]::OSVersion.Version -ge (new-object 'Version' 6,1)
 $processor = Get-WmiObject Win32_Processor

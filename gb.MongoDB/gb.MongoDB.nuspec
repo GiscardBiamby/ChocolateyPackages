@@ -3,7 +3,7 @@
   <metadata>
     <id>gb.MongoDB</id>
     <title>gb.MongoDB</title>
-    <version>2.4.6.1</version>
+    <version>2.4.7.0</version>
     <authors>10gen</authors>
     <owners>gbiamby</owners>
     <summary>gb.MongoDB (based on H. Alan Stevens' MongoDB 2.4.6 package)</summary>
